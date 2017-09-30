@@ -8,12 +8,13 @@ import OperandInput from '../components/OperandInput';
 import MinusButton from '../components/MinusButton';
 import PlusButton from '../components/PlusButton';
 import Result from '../components/Result';
+import SavedResults from '../components/SavedResults';
 
 class Calculator extends Component {
   render() {
     const { calculator, actions } = this.props;
     return (
-        <div className="App">
+        <div className="app">
             <div className="value-container">
                 <OperandInput onChange={(e) => actions.onFirstOperandChange(e.target.value)} />
                 <OperandInput onChange={(e) => actions.onSecondOperandChange(e.target.value)} />
@@ -21,6 +22,7 @@ class Calculator extends Component {
             <PlusButton onClick={() => actions.onPlusClick()} />
             <MinusButton onClick={() => actions.onMinusClick()} />
             <Result result={ calculator.result } />
+            <SavedResults savedResults={ calculator.savedInfo } />
         </div>
     );
   }

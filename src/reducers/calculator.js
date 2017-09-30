@@ -3,7 +3,8 @@ import { INPUT_FIRST_OPERAND, INPUT_SECOND_OPERAND, PLUS, MINUS } from '../actio
 const initialAppState = {
   firstOperandValue: 0,
   secondOperandValue: 0,
-  result: 0
+  result: 0,
+  savedInfo: []
 };
 
 const calculator = (state = initialAppState, action) => {
@@ -19,11 +20,23 @@ const calculator = (state = initialAppState, action) => {
             })
         case PLUS:
             return Object.assign({}, state, {
-                result: state.firstOperandValue + state.secondOperandValue
+                result: state.firstOperandValue + state.secondOperandValue,
+                savedInfo: state.savedInfo.concat({
+                    firstOperand: state.firstOperandValue,
+                    secondOperand: state.secondOperandValue,
+                    operationType: 'PLUS',
+                    operationResult: state.firstOperandValue + state.secondOperandValue
+                })
             })
         case MINUS:
             return Object.assign({}, state, {
-                result: state.firstOperandValue - state.secondOperandValue
+                result: state.firstOperandValue - state.secondOperandValue,
+                savedInfo: state.savedInfo.concat({
+                    firstOperand: state.firstOperandValue,
+                    secondOperand: state.secondOperandValue,
+                    operationType: 'MINUS',
+                    operationResult: state.firstOperandValue - state.secondOperandValue
+                })
             })
         default:
         return state
