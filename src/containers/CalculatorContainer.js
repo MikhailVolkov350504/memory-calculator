@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { onFirstOperandChange, onSecondOperandChange, onPlusClick, onMinusClick } from '../actions';
+import { onOperandChange, onButtonClick } from '../actions';
 
 import OperandInput from '../components/OperandInput';
-import MinusButton from '../components/MinusButton';
-import PlusButton from '../components/PlusButton';
+import Button from '../components/OperationButton';
 import Result from '../components/Result';
 import SavedResults from '../components/SavedResults';
+
+import '../styles/App.css';
+import '../styles/Button.css';
+import '../styles/Input.css';
+import '../styles/Table.css';
 
 class Calculator extends Component {
   render() {
@@ -16,13 +20,19 @@ class Calculator extends Component {
     return (
         <div className="app">
             <div className="value-container">
-                <OperandInput onChange={(e) => actions.onFirstOperandChange(e.target.value)} />
-                <OperandInput onChange={(e) => actions.onSecondOperandChange(e.target.value)} />
+                <OperandInput onChange={(e) => actions.onOperandChange(e.target.value, 1)} />
+                <OperandInput onChange={(e) => actions.onOperandChange(e.target.value, 2)} />
             </div>
-            <PlusButton onClick={() => actions.onPlusClick()} />
-            <MinusButton onClick={() => actions.onMinusClick()} />
+            <div className="buttons-container">
+                <Button type="plus" onClick={() => actions.onButtonClick('plus')} />
+                <Button type="minus" onClick={() => actions.onButtonClick('minus')} />
+                <Button type="multiply" onClick={() => actions.onButtonClick('multiply')} />
+                <Button type="divide" onClick={() => actions.onButtonClick('divide')} />
+                <Button type="remainder" onClick={() => actions.onButtonClick('remainder')} />
+                <Button type="highest-prime" onClick={() => actions.onButtonClick('highest-prime')} />
+            </div>
             <Result result={ calculator.result } />
-            <SavedResults savedResults={ calculator.savedInfo } />
+            <SavedResults className="saved-result" savedResults={ calculator.savedInfo } />
         </div>
     );
   }
@@ -36,17 +46,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            onFirstOperandChange: (value) => {
-                dispatch(onFirstOperandChange(value));
+            onOperandChange: (value, id) => {
+                dispatch(onOperandChange(value, id));
             },
-            onSecondOperandChange: (value) => {
-                dispatch(onSecondOperandChange(value));
-            },
-            onPlusClick: () => {
-                dispatch(onPlusClick());
-            },
-            onMinusClick: (e) => {
-                dispatch(onMinusClick());
+            onButtonClick: (type) => {
+                dispatch(onButtonClick(type));
             }
         }
     }

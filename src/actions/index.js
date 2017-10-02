@@ -1,22 +1,13 @@
-export const INPUT_FIRST_OPERAND = 'INPUT_FIRST_OPERAND'
-export const INPUT_SECOND_OPERAND = 'INPUT_SECOND_OPERAND';
-export const PLUS = 'PLUS';
-export const MINUS = 'MINUS';
+export const INPUT_OPERAND = 'INPUT_OPERAND';
+export const BUTTON_CLICK = 'BUTTON_CLICK';
 
-export const onFirstOperandChange = (number) => ({
-  type: INPUT_FIRST_OPERAND,
+export const onOperandChange = (number, id) => ({
+  type: INPUT_OPERAND,
+  id: id,
   value: number
 });
 
-export const onSecondOperandChange = (number) => ({
-  type: INPUT_SECOND_OPERAND,
-  value: number
-});
-
-export const onPlusClick = () => ({
-  type: PLUS
-});
-
-export const onMinusClick = () => ({
-  type: MINUS
+export const onButtonClick = (operation) => ({
+  type: BUTTON_CLICK,
+  operation
 });

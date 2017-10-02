@@ -1,0 +1,9 @@
+.result-table {
+    margin-top: 20px;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.result-table td {
+    border: 1px solid black;
+}

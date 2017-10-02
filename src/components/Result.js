@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Result = ({ result }) => (
-  <div>
+  <div className="result" >
     Result: <span>{result}</span>
   </div>
 )

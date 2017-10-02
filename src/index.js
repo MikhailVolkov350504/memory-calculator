@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
-import './index.css';
+import './styles/index.css';
 
 import App from './App';
 import calcReducer from './reducers'
